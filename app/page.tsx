@@ -57,7 +57,15 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <PawIcon className="hidden flex-none rotate-12 text-white/90 lg:block lg:h-48 lg:w-48 xl:h-56 xl:w-56" />
+          <div className="hidden flex-none overflow-hidden rounded-full shadow-2xl ring-4 ring-white/80 lg:block lg:h-56 lg:w-56 xl:h-64 xl:w-64">
+            <Image
+              src="/hero-vet-dog.jpg"
+              alt="Our team caring for a happy dog"
+              width={256}
+              height={256}
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
       </section>
 
@@ -111,16 +119,16 @@ export default function Home() {
               ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12 flex flex-wrap justify-center gap-4">
             <Link
               href="/services"
-              className="mr-4 inline-block rounded-full border border-brand-blue px-7 py-3.5 text-sm font-semibold text-brand-blue transition duration-200 hover:scale-[1.03] hover:bg-brand-blue hover:text-white active:scale-[0.98]"
+              className="rounded-full border border-brand-blue px-7 py-3.5 text-sm font-semibold text-brand-blue transition duration-200 hover:scale-[1.03] hover:bg-brand-blue hover:text-white active:scale-[0.98]"
             >
               See All Services
             </Link>
             <Link
               href="/contact"
-              className="inline-block rounded-full bg-brand-blue px-7 py-3.5 text-sm font-semibold text-white transition duration-200 hover:scale-[1.03] hover:bg-brand-dark active:scale-[0.98]"
+              className="rounded-full bg-brand-blue px-7 py-3.5 text-sm font-semibold text-white transition duration-200 hover:scale-[1.03] hover:bg-brand-dark active:scale-[0.98]"
             >
               Book an Appointment
             </Link>
