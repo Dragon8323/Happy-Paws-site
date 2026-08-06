@@ -5,11 +5,59 @@ import Reveal from "./components/Reveal";
 import ServiceImagePlaceholder from "./components/ServiceImagePlaceholder";
 import { services, siteConfig, testimonials } from "@/lib/site-data";
 
+function ShieldIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 1.5c-.3 0-.6.06-.9.2L4.7 4.5c-.7.3-1.2 1-1.2 1.8v5.1c0 5.3 3.6 9.9 8.5 11.3.4.1.8.1 1.2 0 4.9-1.4 8.5-6 8.5-11.3V6.3c0-.8-.5-1.5-1.2-1.8L12.9 1.7c-.3-.14-.6-.2-.9-.2Zm4 8-4.6 4.6a.9.9 0 0 1-1.27 0L7.6 11.6a.9.9 0 1 1 1.27-1.27l2.02 2.02 3.96-3.96A.9.9 0 1 1 16 9.5Z"
+      />
+    </svg>
+  );
+}
+
+function ClockIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm.9 5a.9.9 0 1 0-1.8 0v5.2c0 .27.1.53.31.72l3.5 3.2a.9.9 0 1 0 1.22-1.33L12.9 11.8V7Z"
+      />
+    </svg>
+  );
+}
+
+function PinIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 22s7.5-7.4 7.5-13a7.5 7.5 0 1 0-15 0C4.5 14.6 12 22 12 22Zm0-9.5a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Z"
+      />
+    </svg>
+  );
+}
+
+function CrossIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1.1 5.4v3.5h3.5a1.1 1.1 0 1 1 0 2.2h-3.5v3.5a1.1 1.1 0 1 1-2.2 0v-3.5H7.4a1.1 1.1 0 1 1 0-2.2h3.5V7.4a1.1 1.1 0 1 1 2.2 0Z"
+      />
+    </svg>
+  );
+}
+
 const trustPoints = [
-  { title: "Trusted Since 2008", detail: "Caring for private patients and strays across Malta for over 15 years." },
-  { title: "Saturday Hours Available", detail: "Open six days a week to fit around your schedule." },
-  { title: "Conveniently Located", detail: "Easy to find and reach in Il-Marsa, Malta." },
-  { title: "In-House Pharmacy", detail: "Medication and care essentials, all under one roof." },
+  { title: "Trusted Since 2008", detail: "Caring for private patients and strays across Malta for over 15 years.", icon: ShieldIcon },
+  { title: "Saturday Hours Available", detail: "Open six days a week to fit around your schedule.", icon: ClockIcon },
+  { title: "Conveniently Located", detail: "Easy to find and reach in Il-Marsa, Malta.", icon: PinIcon },
+  { title: "In-House Pharmacy", detail: "Medication and care essentials, all under one roof.", icon: CrossIcon },
 ];
 
 export default function Home() {
@@ -75,7 +123,7 @@ export default function Home() {
           {trustPoints.map((point) => (
             <div key={point.title} className="flex items-start gap-3">
               <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue">
-                <PawIcon className="h-5 w-5" />
+                <point.icon className="h-5 w-5" />
               </span>
               <div>
                 <p className="font-semibold text-brand-dark">{point.title}</p>
@@ -179,8 +227,16 @@ export default function Home() {
             {testimonials.map((t) => (
               <figure
                 key={t.name}
-                className="flex flex-col rounded-2xl border border-black/5 bg-brand-light p-8 transition duration-200 hover:-translate-y-1 hover:shadow-md"
+                className="relative flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-brand-light p-8 transition duration-200 hover:-translate-y-1 hover:shadow-md"
               >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-2 -top-3 h-20 w-20 text-brand-blue/10"
+                >
+                  <path d="M7.17 6A5.17 5.17 0 0 0 2 11.17V18h6.83v-6.83H4.83c0-1.3 1.05-2.35 2.34-2.35V6Zm10 0A5.17 5.17 0 0 0 12 11.17V18h6.83v-6.83h-4.02c0-1.3 1.05-2.35 2.34-2.35V6Z" />
+                </svg>
                 <div className="flex items-center gap-3">
                   <span className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-gradient-to-br from-brand-blue to-brand-teal text-sm font-bold text-white">
                     {t.initials}

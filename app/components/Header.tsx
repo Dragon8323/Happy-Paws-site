@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navLinks } from "@/lib/site-data";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur">
@@ -26,16 +28,26 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-5 md:flex lg:gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="group relative whitespace-nowrap text-base font-medium text-brand-dark transition-colors hover:text-brand-blue"
-            >
-              {link.label}
-              <span className="absolute -bottom-1 left-0 right-0 h-0.5 origin-center scale-x-0 bg-brand-blue transition-transform duration-300 ease-out group-hover:scale-x-100" />
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? "page" : undefined}
+                className={`group relative whitespace-nowrap text-base font-medium transition-colors hover:text-brand-blue ${
+                  isActive ? "text-brand-blue" : "text-brand-dark"
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute -bottom-1 left-0 right-0 h-0.5 origin-center bg-brand-blue transition-transform duration-300 ease-out ${
+                    isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -65,16 +77,22 @@ export default function Header() {
 
       {menuOpen && (
         <nav className="flex flex-col gap-1 border-t border-black/5 bg-white px-6 py-4 md:hidden">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="rounded-lg px-2 py-2.5 text-base font-medium text-brand-dark hover:bg-brand-light"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                aria-current={isActive ? "page" : undefined}
+                className={`rounded-lg px-2 py-2.5 text-base font-medium hover:bg-brand-light ${
+                  isActive ? "bg-brand-light text-brand-blue" : "text-brand-dark"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <Link
             href="/contact"
             onClick={() => setMenuOpen(false)}

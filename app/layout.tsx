@@ -14,10 +14,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://happy-paws-site-rouge.vercel.app";
+const siteDescription =
+  "Happy Paws Animal Clinic in Il-Marsa, Malta — helping people help animals. Book an appointment or get in touch with our veterinary team.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Happy Paws Animal Clinic",
-  description:
-    "Happy Paws Animal Clinic in Il-Marsa, Malta — helping people help animals. Book an appointment or get in touch with our veterinary team.",
+  description: siteDescription,
+  openGraph: {
+    title: "Happy Paws Animal Clinic",
+    description: siteDescription,
+    url: siteUrl,
+    siteName: "Happy Paws Animal Clinic",
+    images: [{ url: "/happy-paws-logo.png", width: 800, height: 800 }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Happy Paws Animal Clinic",
+    description: siteDescription,
+    images: ["/happy-paws-logo.png"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
