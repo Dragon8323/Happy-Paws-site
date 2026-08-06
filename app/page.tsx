@@ -42,7 +42,7 @@ export default function Home() {
               <br />
               our team is here to help you help your animal.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap justify-center gap-4 sm:justify-start">
               <Link
                 href="/contact"
                 className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-brand-dark transition duration-200 hover:scale-[1.03] hover:bg-brand-light active:scale-[0.98]"
